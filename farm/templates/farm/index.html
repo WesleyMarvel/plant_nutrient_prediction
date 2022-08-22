@@ -1,0 +1,242 @@
+{% extends 'farm/base.html' %}
+{% load static %}
+
+                {% block content %}
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                        <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                                class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+                    </div>
+                   
+
+                        <!--h3 class="h3 mb-0 text-gray-800"> The ph value is {{rea}}</h3-->
+
+                    
+
+                    <form class="user" method="POST" action="{% url 'index' %}" style="padding: 20px;">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <input type="text" class="form-control form-control-user"
+                                    id="ph" aria-describedby="emailHelp"
+                                    placeholder="Enter on for correction" name="ph" style="padding: 20px; margin-top: 10px;">
+
+                            <!-- <input type="text" class="form-control form-control-user"
+                                    id="ph" aria-describedby="emailHelp"
+                                    placeholder="Enter Crop Name" name="crop_name" style="padding: 20px; margin-top: 10px;"> -->
+
+                           <select name="crop_cat" placeholder="Enter crop type" style="padding: 20px; margin-top: 10px;"
+                             class="form-control form-control-user">
+
+                              <option value="Cereal and oil">Cereal and oil</option>
+                              <option value="Forage">Forage</option>
+                              <option value="Tree and fruit">Tree and fruit</option>
+                              <option value="Vegetable">Vegetable</option>
+                              <option value="Fiber and miscellaneous">Fiber and miscellaneous</option>
+
+                            </select>
+
+                            <input type="text" class="form-control form-control-user"
+                                    id="ph" aria-describedby="emailHelp"
+                                    placeholder="Enter crop name" name="crop_name"style="padding: 20px; margin-top: 10px;">   
+                                
+                            <button class="btn btn-primary btn-user btn-block" type="submit" style="padding: 20px; margin-top: 10px;">enter</button>
+
+                            </form>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 20px;">
+                            <div class="card border-left-danger shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            {% if rea >= 7 %}
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            
+                                                Current Acid level</div>
+
+                                            {% else %} 
+
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            
+                                                Current Acid level</div>
+
+                                             {% endif %}
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">  {{rea}} </div>
+                                          
+
+                                        </div>
+                                            
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 20px;">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            
+                                        
+
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            
+                                                Predicted N level</div>
+
+                                             
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">  {{nitro}} </div>
+                                          
+
+                                        </div>
+                                            
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 20px;">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            
+
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            
+                                                Predicted P level</div>
+
+                                             
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">  {{phos}} </div>
+                                          
+
+                                        </div>
+                                            
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-3 col-md-6 mb-4" style="margin-top: 20px;">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            
+
+                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                            
+                                                Predicted K level</div>
+
+                                             
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">  {{potassium}} </div>
+                                          
+
+                                        </div>
+                                            
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                        <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Recent Ph levels</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>Ph Level</th>
+                                            <th>Time</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>id</th>
+                                            <th>Ph Level</th>
+                                            <th>Time</th>
+                                        </tr>
+                                    </tfoot>
+
+                                    <tbody>
+                                        {% for ph in ph_levels %}
+                                        <tr>
+                                            <td>{{ph.id}}</td>
+                                            <td>{{ph.ph_level}}</td>
+                                            <td>2011/04/25</td>
+                                        </tr>
+                                       {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                
+
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white" style="width:100%">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; Your Website 2021</span>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% endblock %}
